@@ -27,5 +27,5 @@ PAGES_TO_RENDER = (
 )
 
 INSTALLED_APPS = (
-    'dystatic_tags',
+    'aym_tags',
 )

@@ -1,11 +1,11 @@
 
-# DyStatic CMS Readme
+# AYM CMS Readme
 
-The DyStatic CMS is a simple static CMS system built on top
+The AYM CMS is a simple static CMS system built on top
 of [Django][1] templates, and a 76 line Python build script.
 
 You can use all the default Django template filters and tags,
-and DyStatic CMS has a couple of custom tags to facilitate
+and AYM CMS has a couple of custom tags to facilitate
 handling static content more intelligently.
 
 [1]: http://djangoproject.com/
@@ -13,7 +13,7 @@ handling static content more intelligently.
 
 ### Prerequisites
 
-DyStatic makes use of a handful of Python libraries:
+AYM makes use of a handful of Python libraries:
 
 1.  Django
 2.  Python-Markdown
@@ -31,11 +31,11 @@ All of those libraries should be an easy_install away:
 ### Installation
 
 If you have the folder containing this README file, then
-DyStatic CMS is already installed.
+AYM CMS is already installed.
 
 ### Usage
 
-Unzip/download the DyStatic CMS project folder. Then type
+Unzip/download the AYM CMS project folder. Then type
 
     python build.py
 
@@ -82,7 +82,7 @@ good to go.
 
 ### Adding Images to Project
 
-Add any images you want to the ``images/`` folder, andDyStatic
+Add any images you want to the ``images/`` folder, and AYM
 CMS will automatically create thumbnails and copy them into a
 subfolder of the ``deploy/static`` folder when you run the build
 script.
@@ -106,15 +106,15 @@ your ``images/`` directory, you could then refer to it like this:
 And thats really all there is to it.
 
 
-### DyStatic Template Tags
+### AYM Template Tags
 
 At this time there are two custom template tags included
-in the DyStatic CMS project: ``markdown`` and ``syntax``.
+in the AYM CMS project: ``markdown`` and ``syntax``.
 
 ``markdown`` renders the enclosed text as Markdown markup.
 It is used as follows:
 
-    {% load dystatic %}
+    {% load aym %}
     <p> I love templates. </p>
     {% markdown %}
     Render this **content all in Markdown**.
@@ -124,12 +124,12 @@ It is used as follows:
 
     1.  Or at least that is my opinion.
     2.  What about you?
-    {% markdown %}
+    {% endmarkdown %}
 
 ``syntax`` uses Pygments to render the enclosed text with
 a code syntax highlighter. Usage is:
 
-    {% load dystatic %}
+    {% load aym %}
     <p> blah blah blah </p>
     {% syntax objc %}
     [obj addObject:[NSNumber numberWithInt:53]];
