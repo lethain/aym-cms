@@ -9,11 +9,16 @@ This is **some content** written in *Markdown*!
 
 {% endmarkdown %}
 
-{% syntax %}
+{% syntax python %}
 def add(a,b):
     return a * b
 
 x = add(10, 20)
+{% endsyntax %}
+
+{% syntax objc %}
+[myList addObject:[NSNumber numberWithInt:15]];
+return myList;
 {% endsyntax %}
 
 {% endblock %}

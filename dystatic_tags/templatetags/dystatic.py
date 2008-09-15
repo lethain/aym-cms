@@ -32,9 +32,15 @@ class MarkdownNode(template.Node):
 
 @register.tag(name="syntax")
 def syntaxHighlightParser(parser, token):
+    token_list = token.split_contents()
+    if len(token_list) > 1:
+        lexer = token_list[1]
+    else:
+        lexer = None
+
     nodelist = parser.parse(('endsyntax',))
     parser.delete_first_token()
-    return SyntaxHighlightNode(nodelist)
+    return SyntaxHighlightNode(nodelist,lexer)
 
 def get_lexer(value,arg):
     if arg is None:
@@ -42,12 +48,13 @@ def get_lexer(value,arg):
     return lexers.get_lexer_by_name(arg)
 
 class SyntaxHighlightNode(template.Node):
-    def __init__(self, nodelist):
+    def __init__(self, nodelist, lexer):
         self.nodelist = nodelist
+        self.lexer = lexer
 
     def render(self, context):
         output = self.nodelist.render(context)
-        lexer = get_lexer(output, "python")
+        lexer = get_lexer(output, self.lexer)
         formatter = formatters.HtmlFormatter()
         h = pygments.highlight(output, lexer, formatter)
         return safestring.mark_safe(h)
