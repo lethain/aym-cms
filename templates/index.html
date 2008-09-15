@@ -2,6 +2,12 @@
 {% load dystatic %}
 {% block content %}
 
+{% for image in images %}
+<a href="{{ image.image }}">
+  <img src="{{ image.thumbnail }}">
+</a>
+{% endfor %}
+
 {% markdown %}
 This is **some content** written in *Markdown*!
 
