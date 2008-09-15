@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load dystatic %}
+{% block content %}
+
+{% markdown %}
+This is **some content** written in *Markdown*!
+
+>> Isn't that awesome?
+
+{% endmarkdown %}
+
+{% syntax %}
+def add(a,b):
+    return a * b
+
+x = add(10, 20)
+{% endsyntax %}
+
+{% endblock %}

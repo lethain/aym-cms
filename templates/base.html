@@ -1,0 +1,13 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>{% block title %}My CMS{% endblock %}</title>
+<link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="static/pygments.css">
+</head>
+<body>
+{% include "header.html" %}
+{% block content %}{% endblock %}
+{% include "footer.html" %}
+</body>
+</html>
