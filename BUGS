@@ -1,0 +1,4 @@
+
+This isn't technically a bug, but PIL often fails to locate the jpeg encoder correctly on your system. [This is explained here.][decoder]
+
+[decoder]: http://effbot.org/zone/pil-decoder-jpeg-not-available.htm

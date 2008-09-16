@@ -35,15 +35,15 @@ def main():
     for filename in os.listdir(images_dir):
         # only process if ends with image file extension
         before_ext,ext = os.path.splitext(filename)
-        if ext not in (".png",):
+        if ext not in (".png",".jpg",".jpeg"):
             continue
 
         print u"Copying and thumbnailing %s..." % filename
         filepath = os.path.join(images_dir,filename)
         im = Image.open(filepath)
-        im.save(os.path.join(deploy_image_path, filename),"PNG")
+        im.save(os.path.join(deploy_image_path, filename),ext[1:].upper())
         im.thumbnail(thumbnail_dimensions, Image.ANTIALIAS)
-        im.save(os.path.join(deploy_thumb_path, filename), "PNG")
+        im.save(os.path.join(deploy_thumb_path, filename), ext[1:].upper())
 
         # create dict with image data 
         image_dict = {}
