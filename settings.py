@@ -9,6 +9,11 @@ STATIC_DIR = os.path.join(ROOT_PATH,'static')
 DEPLOY_DIR = os.path.join(ROOT_PATH,'deploy')
 IMAGES_DIR = os.path.join(ROOT_PATH,'images')
 
+# path for YUICompressor, or None if you don't
+# want to compress JS/CSS.
+#YUI_COMPRESSOR = "yuicompressor-2.3.6.jar"
+YUI_COMPRESSOR = None
+
 # setting up some helpful values
 STATIC_URL_FORMAT = u"/static/%s"
 STATIC_THUMBNAIL_FORMAT = STATIC_URL_FORMAT % u"thumbnail/%s"
