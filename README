@@ -68,6 +68,37 @@ like this:
 
 AKA, it works exactly the same way that Django does.
 
+### Using YUI Compressor with AYM CMS
+
+[yuic]: http://developer.yahoo.com/yui/compressor/
+
+In the settings file, set ``YUI_COMPRESSOR`` to
+be a path to a [YUI Compressor][yuic] jar on your computer.
+Afterwards, all CSS and JS in your ``statc/`` directory
+will automatically be compressed.
+
+### Using HSS with AYM CMS
+
+[hss]: http://ncannasse.fr/projects/hss
+
+You can now use .hss files, as specified by
+[the HSS project page][hss], to create your
+site's CSS files.
+
+Simply put the ``.hss`` file into your ``static/``
+directory, and AYM CMS will translate them into
+``.css`` files in your ``deploy/static/`` folder
+when you run the deploy script.
+
+Note that means in your HTML you'll need to import
+``my_hss.hss`` as ``my_hss.css``, because the file
+extension will be translated by the build script!
+
+(If you are using YUI Compressor, then AYM CMS
+will first convert ``.hss`` files to ``.css``,
+and will then compress them. AKA: it'll just
+work how it should.)
+
 
 ### Adding Static Content to your CMS
 
