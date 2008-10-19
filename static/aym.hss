@@ -1,0 +1,25 @@
+var myblue = #1111AA;
+var myfont = "Trebuchet MS", Arial, sans-serif;
+
+body {
+    color : $myblue;
+    font : $myfont;
+}
+
+.faq {
+    color : #BC683C;
+    .form {
+        width : 100px;
+        textarea {
+            width : 100%;
+            height : 80px;
+        }
+        .name {
+            font-weight : bold;
+        }
+    }
+    ul {
+        margin-left : 20px;
+        margin-bottom : 20px;
+    }
+}

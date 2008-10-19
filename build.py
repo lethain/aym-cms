@@ -13,6 +13,11 @@ def main():
     print u"Removing existing deploy dir, if any..."
     shutil.rmtree(deploy_dir,ignore_errors=True)
     
+
+    tmp_dir = settings.TMP_DIR
+    print u"Creating temp directory at '%s'..." % tmp_dir
+    os.mkdir(tmp_dir)
+
     print u"Creating deploy/ dir..."
     os.mkdir(deploy_dir)
 
@@ -21,20 +26,36 @@ def main():
     os.mkdir(deploy_static_dir)
     static_dir = settings.STATIC_DIR
     compress = settings.YUI_COMPRESSOR
+    hss = settings.HSS_PATH
+
 
     for filename in os.listdir(static_dir):
         before_ext, ext = os.path.splitext(filename)
         if filename.startswith(".") or filename.endswith("~"):
             print u"Ignored '%s'" % filename
+        elif hss and ext in (".hss"):
+            in_path = os.path.join(static_dir, filename)
+            if compress:
+                print u"Compiling, compressing and copying %s to deploy/static" % filename
+                commands.getoutput(u"%s %s -output %s/" % (hss, in_path, tmp_dir))
+                filename = u"%s.css" % before_ext
+                in_path = os.path.join(tmp_dir, filename)
+                out_path = os.path.join(deploy_static_dir, filename)
+                commands.getoutput(u"java -jar %s %s > %s" % (compress, in_path, out_path))
+            else:
+                print u"Compiling and copying %s to deploy/static" % filename
+                commands.getoutput(u"%s %s -output %s/" % (hss, in_path, deploy_static_dir))
+
         elif compress and ext in (".js",".css"):
             print u"Compressing and copying '%s' to deploy/static/" % filename
             in_path = os.path.join(static_dir, filename)
             out_path = os.path.join(deploy_static_dir, filename)
-            print in_path
-            print out_path
             commands.getoutput(u"java -jar %s %s > %s" % (compress, in_path, out_path))
         else:
             print u"Copying '%s' to deploy/static/" % filename
+            in_path = os.path.join(static_dir, filename)
+            out_path = os.path.join(deploy_static_dir, filename)
+            commands.getoutput(u"cp %s %s" % (in_path, out_path))
             
     print u"Copying and creating thumbnails for files in images/..."
     deploy_thumb_path = os.path.join(deploy_static_dir,'thumbnail')
@@ -84,6 +105,10 @@ def main():
         fout = open(page_path,'w')
         fout.write(rendered)
         fout.close()
+
+    # removing temp directory
+    print u"Removing temp directory..."
+    shutil.rmtree(tmp_dir,ignore_errors=True)
 
     # completed build script
     print u"Done running build.py."
