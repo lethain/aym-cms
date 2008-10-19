@@ -82,6 +82,26 @@ will automatically be compressed.
 
 ### Using CleverCSS with AYM CMS
 
+[clever_css]: http://sandbox.pocoo.org/clevercss/
+
+You can use [CleverCSS][clever_css] with AYM CMS as well.
+Simply install CleverCSS
+
+    sudo easy_install CleverCSS
+
+And set these settings in ``settings.py``:
+
+    USE_CLEVER_CSS = True
+    CLEVER_CSS_EXT = ".ccss"
+
+By default it treats ``.ccss`` files as CleverCSS,
+but you could change it to treat all ``.css`` files
+as CleverCSS if you desire.
+
+``.ccss`` files will be renamed to ``.css`` by the
+build script, and will be compressed with YUI Compressor
+if you have it enabled.
+
 
 ### Using HSS with AYM CMS
 
