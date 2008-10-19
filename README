@@ -80,6 +80,9 @@ will automatically be compressed.
 *You must download [YUI Compressor][yuic] yourself.*
 *It is not bundled with AYM CMS.*
 
+### Using CleverCSS with AYM CMS
+
+
 ### Using HSS with AYM CMS
 
 [hss]: http://ncannasse.fr/projects/hss

@@ -36,16 +36,31 @@ def main():
         elif hss and ext in (".hss"):
             in_path = os.path.join(static_dir, filename)
             if compress:
-                print u"Compiling, compressing and copying %s to deploy/static" % filename
+                print u"Compiling HSS to CSS, compressing and copying %s to deploy/static" % filename
                 commands.getoutput(u"%s %s -output %s/" % (hss, in_path, tmp_dir))
                 filename = u"%s.css" % before_ext
                 in_path = os.path.join(tmp_dir, filename)
                 out_path = os.path.join(deploy_static_dir, filename)
                 commands.getoutput(u"java -jar %s %s > %s" % (compress, in_path, out_path))
             else:
-                print u"Compiling and copying %s to deploy/static" % filename
+                print u"Compiling HSS to CSS, and copying %s to deploy/static" % filename
                 commands.getoutput(u"%s %s -output %s/" % (hss, in_path, deploy_static_dir))
-
+        elif settings.USE_CLEVER_CSS and ext in (settings.CLEVER_CSS_EXT):
+            print u"Compiling via CleverCSS, and copying '%s' to deploy/static/" % filename
+            import clevercss
+            in_path = os.path.join(static_dir, filename)
+            tmp_path = os.path.join(tmp_dir, u"%s.css" % before_ext)
+            fin = open(in_path, 'r')
+            data = fin.read()
+            fin.close()
+            fout = open(tmp_path,'w')
+            fout.write(clevercss.convert(data))
+            fout.close()
+            out_path = os.path.join(deploy_static_dir, filename)
+            if compress:
+                            commands.getoutput(u"java -jar %s %s > %s" % (compress, tmp_path, out_path))
+            else:
+                commands.getoutput(u"mv %s %s" % (tmp_path, out_path))
         elif compress and ext in (".js",".css"):
             print u"Compressing and copying '%s' to deploy/static/" % filename
             in_path = os.path.join(static_dir, filename)
