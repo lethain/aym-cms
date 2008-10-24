@@ -12,8 +12,8 @@ TMP_DIR = os.path.join(ROOT_PATH, 'aym_tmp_files')
 
 # path for YUICompressor, or None if you don't
 # want to compress JS/CSS.
-YUI_COMPRESSOR = "yuicompressor-2.3.6.jar"
-#YUI_COMPRESSOR = None
+# YUI_COMPRESSOR = "yuicompressor-2.3.6.jar"
+YUI_COMPRESSOR = None # if you don't want to use YUI compressor
 
 # path for HSS, which is a preprocessor for CSS-like files (*.hss)
 # project page at http://ncannasse.fr/projects/hss
