@@ -11,7 +11,8 @@ IMAGES_DIR = os.path.join(ROOT_PATH,'images')
 TMP_DIR = os.path.join(ROOT_PATH, 'aym_tmp_files')
 
 # path for YUICompressor, or None if you don't
-# want to compress JS/CSS.
+# want to compress JS/CSS. Project homepage:
+# http://developer.yahoo.com/yui/compressor/
 # YUI_COMPRESSOR = "./yuicompressor-2.3.6.jar"
 YUI_COMPRESSOR = None # if you don't want to use YUI compressor
 
