@@ -9,25 +9,27 @@ def main():
     # retrieving default context dictionary from settings
     context = settings.CONTEXT
     deploy_dir = settings.DEPLOY_DIR
+    tmp_dir = settings.TMP_DIR
     
     print u"Removing existing deploy dir, if any..."
     shutil.rmtree(deploy_dir,ignore_errors=True)
     
-
-    tmp_dir = settings.TMP_DIR
-    print u"Creating temp directory at '%s'..." % tmp_dir
-    os.mkdir(tmp_dir)
+    print u"Removing existing temp dir, if any.."
+    shutil.rmtree(tmp_dir,ignore_errors=True)
 
     print u"Creating deploy/ dir..."
     os.mkdir(deploy_dir)
 
+    print u"Creating temp directory at '%s'" % tmp_dir
+    os.mkdir(tmp_dir)
+
     print u"Copying contents of static/ into deploy/static..."
     deploy_static_dir = os.path.join(deploy_dir,'static')
     os.mkdir(deploy_static_dir)
+
     static_dir = settings.STATIC_DIR
     compress = settings.YUI_COMPRESSOR
     hss = settings.HSS_PATH
-
 
     for filename in os.listdir(static_dir):
         before_ext, ext = os.path.splitext(filename)
