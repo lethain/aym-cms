@@ -24,8 +24,8 @@ HSS_PATH = None # if you don't want to use HSS
 # Set true if you want to use CleverCSS with all .css files.
 # Must be installed via "sudo easy_install CleverCSS" before
 # usage.
-USE_CLEVER_CSS = True
-#USE_CLEVER_CSS = False
+# USE_CLEVER_CSS = True
+USE_CLEVER_CSS = False
 CLEVER_CSS_EXT = ".ccss"
 
 # setting up some helpful values
