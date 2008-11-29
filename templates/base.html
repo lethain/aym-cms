@@ -1,8 +1,9 @@
+{% load aym %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 <title>{% block title %}My CMS{% endblock %}</title>
-<link rel="stylesheet" href="static/style.css?{% now "sdyGim" %}">
+<link rel="stylesheet" href="{{ "static/style.css"|md5_querystring }}">
 <link rel="stylesheet" href="static/pygments.css">
 </head>
 <body>

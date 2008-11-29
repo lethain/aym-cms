@@ -1,6 +1,8 @@
 from django import template
 from django.utils import safestring
 
+import md5
+
 try:
     import markdown
 except ImportError:
@@ -59,4 +61,15 @@ class SyntaxHighlightNode(template.Node):
         h = pygments.highlight(output, lexer, formatter)
         return safestring.mark_safe(h)
         
-        
+    
+@register.filter
+def md5_querystring(value, arg=None):
+    '''filter that appends a path with an md5 querystring'''
+    try:
+        f = file(value, 'r')
+    except IOError:
+        print "Couldn't find path to generate hash querystring for %s" % value
+        return value
+
+    m = md5.new(f.read()).hexdigest()
+    return "%s?%s" % (value, m)        
